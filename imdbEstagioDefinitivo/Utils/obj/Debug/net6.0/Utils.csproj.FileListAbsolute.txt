@@ -1,0 +1,12 @@
+C:\Users\victor.matheus\Desktop\victor\Projeto\Desafio-Estagio-Ind\imdbEstagioDefinitivo\Utils\bin\Debug\net6.0\Utils.deps.json
+C:\Users\victor.matheus\Desktop\victor\Projeto\Desafio-Estagio-Ind\imdbEstagioDefinitivo\Utils\bin\Debug\net6.0\Utils.dll
+C:\Users\victor.matheus\Desktop\victor\Projeto\Desafio-Estagio-Ind\imdbEstagioDefinitivo\Utils\bin\Debug\net6.0\ref\Utils.dll
+C:\Users\victor.matheus\Desktop\victor\Projeto\Desafio-Estagio-Ind\imdbEstagioDefinitivo\Utils\bin\Debug\net6.0\Utils.pdb
+C:\Users\victor.matheus\Desktop\victor\Projeto\Desafio-Estagio-Ind\imdbEstagioDefinitivo\Utils\obj\Debug\net6.0\Utils.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\victor.matheus\Desktop\victor\Projeto\Desafio-Estagio-Ind\imdbEstagioDefinitivo\Utils\obj\Debug\net6.0\Utils.AssemblyInfoInputs.cache
+C:\Users\victor.matheus\Desktop\victor\Projeto\Desafio-Estagio-Ind\imdbEstagioDefinitivo\Utils\obj\Debug\net6.0\Utils.AssemblyInfo.cs
+C:\Users\victor.matheus\Desktop\victor\Projeto\Desafio-Estagio-Ind\imdbEstagioDefinitivo\Utils\obj\Debug\net6.0\Utils.csproj.CoreCompileInputs.cache
+C:\Users\victor.matheus\Desktop\victor\Projeto\Desafio-Estagio-Ind\imdbEstagioDefinitivo\Utils\obj\Debug\net6.0\Utils.dll
+C:\Users\victor.matheus\Desktop\victor\Projeto\Desafio-Estagio-Ind\imdbEstagioDefinitivo\Utils\obj\Debug\net6.0\ref\Utils.dll
+C:\Users\victor.matheus\Desktop\victor\Projeto\Desafio-Estagio-Ind\imdbEstagioDefinitivo\Utils\obj\Debug\net6.0\Utils.pdb
+C:\Users\victor.matheus\Desktop\victor\Projeto\Desafio-Estagio-Ind\imdbEstagioDefinitivo\Utils\obj\Debug\net6.0\Utils.csproj.AssemblyReference.cache

@@ -1,0 +1,17 @@
+C:\Users\victor.matheus\Desktop\victor\Projeto\Desafio-Estagio-Ind\imdbEstagioDefinitivo\Data\bin\Debug\net6.0\Data.deps.json
+C:\Users\victor.matheus\Desktop\victor\Projeto\Desafio-Estagio-Ind\imdbEstagioDefinitivo\Data\bin\Debug\net6.0\Data.dll
+C:\Users\victor.matheus\Desktop\victor\Projeto\Desafio-Estagio-Ind\imdbEstagioDefinitivo\Data\bin\Debug\net6.0\ref\Data.dll
+C:\Users\victor.matheus\Desktop\victor\Projeto\Desafio-Estagio-Ind\imdbEstagioDefinitivo\Data\bin\Debug\net6.0\Data.pdb
+C:\Users\victor.matheus\Desktop\victor\Projeto\Desafio-Estagio-Ind\imdbEstagioDefinitivo\Data\obj\Debug\net6.0\Data.csproj.AssemblyReference.cache
+C:\Users\victor.matheus\Desktop\victor\Projeto\Desafio-Estagio-Ind\imdbEstagioDefinitivo\Data\obj\Debug\net6.0\Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\victor.matheus\Desktop\victor\Projeto\Desafio-Estagio-Ind\imdbEstagioDefinitivo\Data\obj\Debug\net6.0\Data.AssemblyInfoInputs.cache
+C:\Users\victor.matheus\Desktop\victor\Projeto\Desafio-Estagio-Ind\imdbEstagioDefinitivo\Data\obj\Debug\net6.0\Data.AssemblyInfo.cs
+C:\Users\victor.matheus\Desktop\victor\Projeto\Desafio-Estagio-Ind\imdbEstagioDefinitivo\Data\obj\Debug\net6.0\Data.csproj.CoreCompileInputs.cache
+C:\Users\victor.matheus\Desktop\victor\Projeto\Desafio-Estagio-Ind\imdbEstagioDefinitivo\Data\obj\Debug\net6.0\Data.dll
+C:\Users\victor.matheus\Desktop\victor\Projeto\Desafio-Estagio-Ind\imdbEstagioDefinitivo\Data\obj\Debug\net6.0\ref\Data.dll
+C:\Users\victor.matheus\Desktop\victor\Projeto\Desafio-Estagio-Ind\imdbEstagioDefinitivo\Data\obj\Debug\net6.0\Data.pdb
+C:\Users\victor.matheus\Desktop\victor\Projeto\Desafio-Estagio-Ind\imdbEstagioDefinitivo\Data\bin\Debug\net6.0\Data.runtimeconfig.json
+C:\Users\victor.matheus\Desktop\victor\Projeto\Desafio-Estagio-Ind\imdbEstagioDefinitivo\Data\bin\Debug\net6.0\Domain.dll
+C:\Users\victor.matheus\Desktop\victor\Projeto\Desafio-Estagio-Ind\imdbEstagioDefinitivo\Data\bin\Debug\net6.0\Domain.pdb
+C:\Users\victor.matheus\Desktop\victor\Projeto\Desafio-Estagio-Ind\imdbEstagioDefinitivo\Data\obj\Debug\net6.0\Data.csproj.CopyComplete
+C:\Users\victor.matheus\Desktop\victor\Projeto\Desafio-Estagio-Ind\imdbEstagioDefinitivo\Data\obj\Debug\net6.0\Data.genruntimeconfig.cache
