@@ -24,24 +24,24 @@ namespace Data.Repositories
             return await GetById(id);
         }
 
-        public async Task<IEnumerable<Movie>> SearchMovieByDirector(string Diretor)
+        public async Task<IQueryable<Movie>> SearchMovieByDirector(string Diretor)
         {
             return await GetAll(movie => movie.Director == Diretor);
         }
 
-        public async Task<IEnumerable<Movie>> SearchMovieByTitle(string Title)
+        public async Task<IQueryable<Movie>> SearchMovieByTitle(string Title)
         {
             return await GetAll(movie => movie.Title.Contains(Title));
         }
 
         
-        public async Task<IEnumerable<Movie>> SearchMovieByGenre(string GenreName)
+        public async Task<IQueryable<Movie>> SearchMovieByGenre(string GenreName)
         {
             return _dbSet
                 .Include(movie => movie.Genre).Where(movie => movie.Genre.Any(genre => genre.Name == GenreName));
         }
 
-        public async Task<IEnumerable<Movie>> SearchMovieByActor(string ActorName)
+        public async Task<IQueryable<Movie>> SearchMovieByActor(string ActorName)
         {
             return _dbSet
                 .Include(movie => movie.Actors).Where(movie => movie.Actors.Any(actor => actor.Name == ActorName)); 

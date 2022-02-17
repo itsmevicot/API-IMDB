@@ -18,7 +18,7 @@ namespace Data.Repositories
           
         }
 
-        public async Task<IEnumerable<Genre>> SearchMovieByGenre(string GenreName)
+        public async Task<IQueryable<Genre>> SearchMovieByGenre(string GenreName)
         {
             return _dbSet
                 .Where(genre => genre.Name.Contains(GenreName))

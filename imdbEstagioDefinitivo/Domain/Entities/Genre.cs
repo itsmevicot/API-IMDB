@@ -9,6 +9,6 @@ namespace Domain.Entities
     public class Genre : Entity<int>
     {
         public string Name { get; set; }
-        public virtual IEnumerable<Movie> Movies { get; set; }
+        public virtual ICollection<Movie> Movies { get; set; }
     }
 }

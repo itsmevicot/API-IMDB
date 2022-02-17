@@ -15,8 +15,8 @@ namespace Domain.Entities
         public int VoteCounter { get; set; }
         public int Rating { get; set; }
         public DateTime ReleaseDate { get; set; }
-        public virtual IEnumerable<Actor> Actors { get; set; }
-        public virtual IEnumerable<Genre> Genre { get; set; }
-        public virtual IEnumerable<Vote> Votes { get; set; }
+        public virtual ICollection<Actor> Actors { get; set; }
+        public virtual ICollection<Genre> Genre { get; set; }
+        public virtual ICollection<Vote> Votes { get; set; }
     }
 }

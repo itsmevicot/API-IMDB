@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Entities
+namespace Service.DTO_s.ActorDTO
 {
-    public class Actor : Entity<int>
-    { 
+    public class ReadActorDTO
+    {
+        public int Id { get; set; }
         public string Name { get; set; }
-        public ICollection<Movie> Movies { get; set; }
     }
 }

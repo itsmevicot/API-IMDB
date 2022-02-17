@@ -13,7 +13,7 @@ namespace Domain.Entities
         public string Password { get; set; }
         public string Nickname { get; set; }
         public Role Role { get; set; }
-        public virtual IEnumerable<Vote> Votes { get; set; }    
+        public virtual ICollection<Vote> Votes { get; set; }    
         
         public User()
         {
