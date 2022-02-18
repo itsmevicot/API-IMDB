@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Service.DTO_s.MovieDTO
+namespace Service.Dtos.MovieDTO
 {
     public class SimpleReadMovieDTO
     {

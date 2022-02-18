@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Service.DTO_s.ActorDTO
+namespace Service.Dtos.GenreDTO
 {
-    public class ReadActorDTO
+    public class ReadGenreDTO
     {
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string Name { get; set; }   
     }
 }

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Service.DTO_s.ActorDTO
+namespace Service.Dtos.ActorDTO
 {
-    public class UpdateActorDTOs
+    public class UpdateActorDTO
     {
         public string Name { get; set; }    
     }

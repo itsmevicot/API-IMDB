@@ -14,6 +14,5 @@ namespace Service.Services
         private readonly IMovieRepository _movieRepository;
         
 
-        //public async Task<Respon
     }
 }
