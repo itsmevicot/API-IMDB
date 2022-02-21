@@ -3,15 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "imdbAPI", "imdbAPI\imdbAPI.csproj", "{AAB83C97-88F8-46FB-934D-1100E497D3CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "imdbAPI", "imdbAPI\imdbAPI.csproj", "{AAB83C97-88F8-46FB-934D-1100E497D3CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{BE03BB14-4680-472E-9B33-25B1159A002E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "Data\Data.csproj", "{BE03BB14-4680-472E-9B33-25B1159A002E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{54CE8BC5-3B05-49B0-BC46-D3FA293DBC76}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{54CE8BC5-3B05-49B0-BC46-D3FA293DBC76}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{5FBAD72B-6654-46A7-A6E8-47AA69EB7167}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils", "Utils\Utils.csproj", "{E493D161-80F7-4B53-9FCE-97CAE4AF60ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service", "Service\Service.csproj", "{5FBAD72B-6654-46A7-A6E8-47AA69EB7167}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{074415D5-FAE5-4F4A-BA37-CB3CFC893780}"
 	ProjectSection(SolutionItems) = preProject
@@ -40,10 +38,6 @@ Global
 		{5FBAD72B-6654-46A7-A6E8-47AA69EB7167}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5FBAD72B-6654-46A7-A6E8-47AA69EB7167}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5FBAD72B-6654-46A7-A6E8-47AA69EB7167}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E493D161-80F7-4B53-9FCE-97CAE4AF60ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E493D161-80F7-4B53-9FCE-97CAE4AF60ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E493D161-80F7-4B53-9FCE-97CAE4AF60ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E493D161-80F7-4B53-9FCE-97CAE4AF60ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

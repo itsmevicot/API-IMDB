@@ -12,7 +12,9 @@ namespace Service.Services
     {
         private readonly IMapper _mapper;
         private readonly IMovieRepository _movieRepository;
-        
-
     }
+
+
+
+
 }
