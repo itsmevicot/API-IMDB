@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace Service.Services.Utils
 {
-    public class SHA256Cryptograph : IHasher
+    public class HasherService : IHasherService
     {
         private readonly HashAlgorithm _hasher;
-        public SHA256Cryptograph()
+        public HasherService()
         {
             _hasher = SHA256.Create();
         }

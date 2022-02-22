@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Service.Interfaces
 {
-    public interface IHasher
+    public interface IHasherService
     {
         string EncryptPassword(string senha);
         bool VerifyPassword(string senha, string senhaEncriptada);

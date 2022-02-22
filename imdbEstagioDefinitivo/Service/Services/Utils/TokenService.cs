@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Service.Services.Utils
 {
-    public class TokenJWTs
+    public class TokenService
     {
         public async Task<string> GenerateToken(int id, string email, Role role)
         {
@@ -22,7 +22,7 @@ namespace Service.Services.Utils
                 {
                     new Claim("Email", email),
                     new Claim("Id", id.ToString()),
-                    new Claim(ClaimTypes.Role, role)
+                    new Claim(ClaimTypes.Role, role.GetDescription())
                 }),
                 Expires = DateTime.UtcNow.AddHours(2),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
