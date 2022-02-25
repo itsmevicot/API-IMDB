@@ -35,10 +35,39 @@ namespace Service.Services
 
             return mappedMovie;               
         }
-      
-    }   
 
-  
+        public async Task<ReadMovieDto> SearchMovieByDirector(string director)
+        {
+            var movie = await _movieRepository.SearchMovieByDirector(director);
+            if (movie == null)
+            {
+                _notificationHandler.NotificarErro("O diretor buscado não existe ou não dirigiu nenhum filme cadastrado.");
+            }
+            var mappedMovie = _mapper.Map<ReadMovieDto>(movie);
+            return mappedMovie;
+        }
 
+        public async Task<ReadMovieDto> SearchMovieByTitle(string title)
+        {
+            var movie = _movieRepository.SearchMovieByTitle(title);
+            if (movie == null)
+            {
+                _notificationHandler.NotificarErro("O título buscado não existe.");
+            }
+            var mappedMovie = _mapper.Map<ReadMovieDto>(movie);
+            return mappedMovie;
+        }
 
+        public async Task<ReadMovieDto> SearchMovieByGenre(string genre)
+        {
+            var movie = _movieRepository.SearchMovieByGenre(genre);
+            if (movie == null)
+            {
+                _notificationHandler.NotificarErro("O gênero buscado não existe.");
+            }
+            var mappedMovie = _mapper.Map<ReadMovieDto>(movie);
+            return mappedMovie;
+
+        }  
+    }
 }
