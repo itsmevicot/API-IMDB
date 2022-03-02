@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Domain.Entities;
 using Domain.Interfaces.Repositories;
 using Service.Dtos.MovieDTO;
 using Service.Interfaces;
@@ -68,6 +69,38 @@ namespace Service.Services
             var mappedMovie = _mapper.Map<ReadMovieDto>(movie);
             return mappedMovie;
 
-        }  
+        }
+        
+        public async Task <ReadMovieDto> SearchMovieByActor(string actor)
+        {
+            var movie = _movieRepository.SearchMovieByActor(actor);
+            if (movie == null)
+            {
+                _notificationHandler.NotificarErro("O ator pesquisado não existe.");
+            }
+            var mappedMovie = _mapper.Map<ReadMovieDto>(movie);
+            return mappedMovie;
+        }
+
+        /*
+        public async Task<Movie> RegisterMovie(ReadMovieDto cadastrarFilme) 
+        {
+            var movie = await _movieRepository.SearchMovieByTitle(cadastrarFilme.Title);
+            try
+            {
+                var mappedMovie = _mapper.Map<Movie>(cadastrarFilme);
+                if (movie.Any())
+                {
+                    _notificationHandler.NotificarErro("Já existe um filme com esse título cadastrado.");
+                }
+                await _movieRepository.Add(mappedMovie);
+                await _movieRepository.SaveChanges();
+                return mappedMovie;
+            }
+            catch 
+            {
+                return _notificationHandler.NotificarErro("Erro ao cadastrar o filme.");
+            }
+        }*/
     }
 }

@@ -13,5 +13,6 @@ namespace Domain.Interfaces.Repositories
         Task<IQueryable<Movie>> SearchMovieByDirector(string Diretor);
         Task<IQueryable<Movie>> SearchMovieByTitle(string Title);
         Task<IQueryable<Movie>> SearchMovieByGenre(string GenreName);
+        Task<IQueryable<Movie>> SearchMovieByActor(string ActorName);
     }
 }

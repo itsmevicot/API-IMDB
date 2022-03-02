@@ -15,6 +15,7 @@ namespace Domain.Interfaces.Repositories
         Task Add(T entity);
         Task Update(T entity);
         Task Delete(T entity);
+        Task<int> SaveChanges();
         
 
         

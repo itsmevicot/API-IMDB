@@ -41,6 +41,7 @@ namespace Data.Repositories
                 .Include(movie => movie.Genre).Where(movie => movie.Genre.Any(genre => genre.Name == GenreName));
         }
 
+
         public async Task<IQueryable<Movie>> SearchMovieByActor(string ActorName)
         {
             return _dbSet

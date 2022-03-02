@@ -16,13 +16,13 @@ namespace imdbAPI.Controllers
         {
             _movieService = movieService;
         }
-
+        /*
         [HttpPost]
         public IActionResult CadastrarFilme(UpdateMovieDTO updateMovieDTO)
         {
             var movie = _movieService.
         }
-
+        */
     }
 
 
