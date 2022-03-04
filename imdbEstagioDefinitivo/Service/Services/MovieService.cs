@@ -82,8 +82,8 @@ namespace Service.Services
             return mappedMovie;
         }
 
-        /*
-        public async Task<Movie> RegisterMovie(ReadMovieDto cadastrarFilme) 
+       /* 
+        public async Task<Result> RegisterMovie(ReadMovieDto cadastrarFilme) 
         {
             var movie = await _movieRepository.SearchMovieByTitle(cadastrarFilme.Title);
             try
@@ -95,12 +95,14 @@ namespace Service.Services
                 }
                 await _movieRepository.Add(mappedMovie);
                 await _movieRepository.SaveChanges();
-                return mappedMovie;
+
             }
             catch 
             {
-                return _notificationHandler.NotificarErro("Erro ao cadastrar o filme.");
+                _notificationHandler.NotificarErro("Erro ao cadastrar o filme.");
+ 
             }
-        }*/
+        }
+       */
     }
 }

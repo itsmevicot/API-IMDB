@@ -13,7 +13,7 @@ namespace Domain.Entities
         public int Duration { get; set; }
         public string Director { get; set; }
         public int VoteCounter { get; set; }
-        public int Rating { get; set; }
+        public int AverageVote { get; set; }
         public DateTime ReleaseDate { get; set; }
         public virtual ICollection<Actor> Actors { get; set; }
         public virtual ICollection<Genre> Genre { get; set; }

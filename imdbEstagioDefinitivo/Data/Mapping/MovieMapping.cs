@@ -36,7 +36,7 @@ namespace Data.Mapping
                 .HasColumnType("varchar")
                 .HasMaxLength(1000);
 
-            builder.Property(movie => movie.Rating)
+            builder.Property(movie => movie.AverageVote)
                 .HasColumnType("int");
 
             builder.Property(movie => movie.Director)

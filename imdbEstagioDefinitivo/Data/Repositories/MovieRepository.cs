@@ -19,7 +19,7 @@ namespace Data.Repositories
         
         }
 
-        public async Task<Movie> GetMovieInformation(int id)
+        public async Task<Movie> GetById(int id)
         {
             return await GetById(id);
         }
@@ -47,6 +47,18 @@ namespace Data.Repositories
             return _dbSet
                 .Include(movie => movie.Actors).Where(movie => movie.Actors.Any(actor => actor.Name == ActorName)); 
         }
+
+
+        /*
+        public static float GetAverageRating(Movie movie)
+        {
+            if (movie.VoteCounter == 0)
+                return 0;
+
+            var qtdadeVotos = movie.VoteCounter;
+            return;
+        }
+        */
         
     }
 }

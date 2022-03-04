@@ -17,13 +17,5 @@ namespace Data.Repositories
         {
           
         }
-
-        public async Task<IQueryable<Genre>> SearchMovieByGenre(string GenreName)
-        {
-            return _dbSet
-                .Where(genre => genre.Name.Contains(GenreName))
-                .Include(genre => genre.Movies.Where(movie => movie.Active));
-
-        }
     }
 }

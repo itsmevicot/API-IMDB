@@ -9,7 +9,7 @@ namespace Domain.Interfaces.Repositories
 {
     public interface IMovieRepository : IBaseRepository<Movie>
     {
-        Task<Movie> GetMovieInformation(int id);
+        Task<Movie> GetById(int id);
         Task<IQueryable<Movie>> SearchMovieByDirector(string Diretor);
         Task<IQueryable<Movie>> SearchMovieByTitle(string Title);
         Task<IQueryable<Movie>> SearchMovieByGenre(string GenreName);
