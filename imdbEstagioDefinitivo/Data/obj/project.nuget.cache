@@ -1,11 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "jMVKCDopoOSvUM8qlhfgNbsJsFhLW964/Ied78VlCw5AZvj2Kh5ZVtdR43+oiD20b9xCx3z2Envjk5Hs8PQHTw==",
+  "dgSpecHash": "/crWWng2udS+LtecQortiGa+ut5MgTeV0qEHQ7Q0bhs2fUsywtFds83f2utlCaVfzPwlJyh2Jt5CNFMiHAIn4w==",
   "success": true,
   "projectFilePath": "C:\\Users\\victor.matheus\\Desktop\\victor\\Projeto\\Desafio-Estagio-Ind\\imdbEstagioDefinitivo\\Data\\Data.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\victor.matheus\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
+    "C:\\Users\\victor.matheus\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
+    "C:\\Users\\victor.matheus\\.nuget\\packages\\fluentresults\\3.2.0\\fluentresults.3.2.0.nupkg.sha512",
     "C:\\Users\\victor.matheus\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\victor.matheus\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\victor.matheus\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.4\\microsoft.data.sqlclient.2.1.4.nupkg.sha512",
     "C:\\Users\\victor.matheus\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.1.1\\microsoft.data.sqlclient.sni.runtime.2.1.1.nupkg.sha512",
     "C:\\Users\\victor.matheus\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.1\\microsoft.entityframeworkcore.6.0.1.nupkg.sha512",

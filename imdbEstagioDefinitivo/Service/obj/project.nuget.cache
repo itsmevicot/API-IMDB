@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "u0G1pCnr4gWQdr+xNW2Jm6RWRjnOoJC7UmYF9718XHN35f59JjwVWWgVVzIjtb4yy7xiM7GLk5J9W9ipNPvUXA==",
+  "dgSpecHash": "Bg0tyXSsbxjrf6e8TVJYdEJ4ka86n2mh2NFvwCvzw32bXYckuSc5dlPnYeGdfQrk68KxOklwVrD1ivkyrZF3dQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\victor.matheus\\Desktop\\victor\\Projeto\\Desafio-Estagio-Ind\\imdbEstagioDefinitivo\\Service\\Service.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\victor.matheus\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
     "C:\\Users\\victor.matheus\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
+    "C:\\Users\\victor.matheus\\.nuget\\packages\\fluentresults\\3.2.0\\fluentresults.3.2.0.nupkg.sha512",
     "C:\\Users\\victor.matheus\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\victor.matheus\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.4\\microsoft.data.sqlclient.2.1.4.nupkg.sha512",
     "C:\\Users\\victor.matheus\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.1.1\\microsoft.data.sqlclient.sni.runtime.2.1.1.nupkg.sha512",

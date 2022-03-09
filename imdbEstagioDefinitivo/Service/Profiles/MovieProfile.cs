@@ -14,7 +14,7 @@ namespace Service.Profiles
         public MovieProfile()
         {
             CreateMap<UpdateMovieDTO, Movie>();
-            CreateMap<Movie, SimpleReadMovieDTO>();
+            CreateMap<Movie, CreateMovieDTO>();
         }
     }
 }

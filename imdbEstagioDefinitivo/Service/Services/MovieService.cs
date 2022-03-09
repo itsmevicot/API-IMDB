@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Domain.Entities;
 using Domain.Interfaces.Repositories;
+using FluentResults;
 using Service.Dtos.MovieDTO;
 using Service.Interfaces;
 using System;
@@ -15,13 +16,11 @@ namespace Service.Services
     {
         private readonly IMapper _mapper;
         private readonly IMovieRepository _movieRepository;
-        private readonly INotificationHandler _notificationHandler;
 
-        public MovieService(IMapper mapper, IMovieRepository movieRepository, INotificationHandler notificationHandler)
+        public MovieService(IMapper mapper, IMovieRepository movieRepository)
         {
             _mapper = mapper;
             _movieRepository = movieRepository;
-            _notificationHandler = notificationHandler;
         }
 
         public async Task<ReadMovieDto> GetById(int id)
@@ -29,80 +28,81 @@ namespace Service.Services
             var movie = await _movieRepository.GetById(id);
             if (movie == null)
             {
-                _notificationHandler.NotificarErro("O filme buscado não existe.");
+                return null;
             }
 
             var mappedMovie = _mapper.Map<ReadMovieDto>(movie);
 
-            return mappedMovie;               
+            return mappedMovie;
         }
 
-        public async Task<ReadMovieDto> SearchMovieByDirector(string director)
+        public async Task<Result<ReadMovieDto>> SearchMovieByDirector(string director)
         {
             var movie = await _movieRepository.SearchMovieByDirector(director);
             if (movie == null)
             {
-                _notificationHandler.NotificarErro("O diretor buscado não existe ou não dirigiu nenhum filme cadastrado.");
+                Result.Fail("O diretor buscado não existe ou não dirigiu nenhum filme cadastrado.");
             }
             var mappedMovie = _mapper.Map<ReadMovieDto>(movie);
-            return mappedMovie;
+            return Result.Ok(mappedMovie);
         }
 
-        public async Task<ReadMovieDto> SearchMovieByTitle(string title)
+        public async Task<Result<ReadMovieDto>> SearchMovieByTitle(string title)
         {
             var movie = _movieRepository.SearchMovieByTitle(title);
             if (movie == null)
             {
-                _notificationHandler.NotificarErro("O título buscado não existe.");
+                Result.Fail("O título buscado não existe.");
             }
             var mappedMovie = _mapper.Map<ReadMovieDto>(movie);
-            return mappedMovie;
+            return Result.Ok(mappedMovie);
         }
 
-        public async Task<ReadMovieDto> SearchMovieByGenre(string genre)
+        public async Task<Result<ReadMovieDto>> SearchMovieByGenre(string genre)
         {
             var movie = _movieRepository.SearchMovieByGenre(genre);
             if (movie == null)
             {
-                _notificationHandler.NotificarErro("O gênero buscado não existe.");
+                return Result.Fail("O gênero buscado não existe.");
             }
             var mappedMovie = _mapper.Map<ReadMovieDto>(movie);
-            return mappedMovie;
+            return Result.Ok(mappedMovie);
 
         }
-        
-        public async Task <ReadMovieDto> SearchMovieByActor(string actor)
+
+        public async Task<Result<ReadMovieDto>> SearchMovieByActor(string actor)
         {
             var movie = _movieRepository.SearchMovieByActor(actor);
             if (movie == null)
             {
-                _notificationHandler.NotificarErro("O ator pesquisado não existe.");
+                Result.Fail("O ator pesquisado não existe.");
             }
             var mappedMovie = _mapper.Map<ReadMovieDto>(movie);
-            return mappedMovie;
+            return Result.Ok(mappedMovie);
         }
 
-       /* 
-        public async Task<Result> RegisterMovie(ReadMovieDto cadastrarFilme) 
+        public async Task<Result> RegisterMovie(CreateMovieDTO cadastrarFilme)
         {
             var movie = await _movieRepository.SearchMovieByTitle(cadastrarFilme.Title);
+
             try
             {
                 var mappedMovie = _mapper.Map<Movie>(cadastrarFilme);
+
                 if (movie.Any())
                 {
-                    _notificationHandler.NotificarErro("Já existe um filme com esse título cadastrado.");
+                   return  Result.Fail("Já existe um filme com esse título cadastrado.");
                 }
                 await _movieRepository.Add(mappedMovie);
                 await _movieRepository.SaveChanges();
 
+                return Result.Ok();
             }
-            catch 
+            catch
             {
-                _notificationHandler.NotificarErro("Erro ao cadastrar o filme.");
- 
+                return Result.Fail("Erro ao cadastrar o filme.");
             }
+
         }
-       */
     }
 }

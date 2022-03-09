@@ -15,7 +15,6 @@ C:\Users\victor.matheus\Desktop\victor\Projeto\Desafio-Estagio-Ind\imdbEstagioDe
 C:\Users\victor.matheus\Desktop\victor\Projeto\Desafio-Estagio-Ind\imdbEstagioDefinitivo\imdbAPI\obj\Debug\net6.0\imdbAPI.AssemblyInfoInputs.cache
 C:\Users\victor.matheus\Desktop\victor\Projeto\Desafio-Estagio-Ind\imdbEstagioDefinitivo\imdbAPI\obj\Debug\net6.0\imdbAPI.AssemblyInfo.cs
 C:\Users\victor.matheus\Desktop\victor\Projeto\Desafio-Estagio-Ind\imdbEstagioDefinitivo\imdbAPI\obj\Debug\net6.0\imdbAPI.csproj.CoreCompileInputs.cache
-C:\Users\victor.matheus\Desktop\victor\Projeto\Desafio-Estagio-Ind\imdbEstagioDefinitivo\imdbAPI\obj\Debug\net6.0\imdbAPI.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\victor.matheus\Desktop\victor\Projeto\Desafio-Estagio-Ind\imdbEstagioDefinitivo\imdbAPI\obj\Debug\net6.0\imdbAPI.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\victor.matheus\Desktop\victor\Projeto\Desafio-Estagio-Ind\imdbEstagioDefinitivo\imdbAPI\obj\Debug\net6.0\staticwebassets.build.json
 C:\Users\victor.matheus\Desktop\victor\Projeto\Desafio-Estagio-Ind\imdbEstagioDefinitivo\imdbAPI\obj\Debug\net6.0\staticwebassets.development.json
@@ -62,3 +61,8 @@ C:\Users\victor.matheus\Desktop\victor\Projeto\Desafio-Estagio-Ind\imdbEstagioDe
 C:\Users\victor.matheus\Desktop\victor\Projeto\Desafio-Estagio-Ind\imdbEstagioDefinitivo\imdbAPI\bin\Debug\net6.0\Domain.pdb
 C:\Users\victor.matheus\Desktop\victor\Projeto\Desafio-Estagio-Ind\imdbEstagioDefinitivo\imdbAPI\bin\Debug\net6.0\Humanizer.dll
 C:\Users\victor.matheus\Desktop\victor\Projeto\Desafio-Estagio-Ind\imdbEstagioDefinitivo\imdbAPI\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\victor.matheus\Desktop\victor\Projeto\Desafio-Estagio-Ind\imdbEstagioDefinitivo\imdbAPI\bin\Debug\net6.0\AutoMapper.dll
+C:\Users\victor.matheus\Desktop\victor\Projeto\Desafio-Estagio-Ind\imdbEstagioDefinitivo\imdbAPI\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\victor.matheus\Desktop\victor\Projeto\Desafio-Estagio-Ind\imdbEstagioDefinitivo\imdbAPI\bin\Debug\net6.0\FluentResults.dll
+C:\Users\victor.matheus\Desktop\victor\Projeto\Desafio-Estagio-Ind\imdbEstagioDefinitivo\imdbAPI\bin\Debug\net6.0\Service.dll
+C:\Users\victor.matheus\Desktop\victor\Projeto\Desafio-Estagio-Ind\imdbEstagioDefinitivo\imdbAPI\bin\Debug\net6.0\Service.pdb

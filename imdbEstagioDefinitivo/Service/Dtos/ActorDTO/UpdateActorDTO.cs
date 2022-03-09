@@ -9,7 +9,7 @@ namespace Service.Dtos.ActorDTO
 {
     public class UpdateActorDTO
     {
-        [Required(ErrorMessage = "O campo nome é obrigatório.");
+        [Required(ErrorMessage = "O campo nome é obrigatório.")]
         public string Name { get; set; }    
     }
 }

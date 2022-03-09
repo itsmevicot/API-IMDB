@@ -12,17 +12,19 @@ namespace imdbAPI.Controllers
     {
         private readonly IMovieService _movieService;
 
-        public MovieController(IMovieService movieService) 
+        public MovieController(IMovieService movieService)
         {
             _movieService = movieService;
         }
-        /*
+
         [HttpPost]
-        public IActionResult CadastrarFilme(UpdateMovieDTO updateMovieDTO)
+        public async Task<IActionResult> CadastrarFilme(CreateMovieDTO registerMovie)
         {
-            var movie = _movieService.
+            var result = await _movieService.RegisterMovie(registerMovie);
+            if (result.IsSuccess) return Ok();
+            return BadRequest(result.Errors);
         }
-        */
+
     }
 
 
