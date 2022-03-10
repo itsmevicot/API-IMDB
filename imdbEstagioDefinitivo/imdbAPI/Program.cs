@@ -1,5 +1,8 @@
 using Data.Context;
+using Domain.Entities;
+using imdbAPI.Extensions;
 using Microsoft.EntityFrameworkCore;
+using Service.Dtos.MovieDTO;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +12,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+builder.Services.AddAutoMapper(a => { });
+builder.Services.AddDependenceInjection();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

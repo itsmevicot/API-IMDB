@@ -83,16 +83,20 @@ namespace Service.Services
 
         public async Task<Result> RegisterMovie(CreateMovieDTO cadastrarFilme)
         {
+            if((await _movieRepository.GetAll()).Any(m=>m.Title == cadastrarFilme.Title))
+                   return Result.Fail("Já existe um filme com esse título cadastrado.");
+
             var movie = await _movieRepository.SearchMovieByTitle(cadastrarFilme.Title);
 
             try
             {
                 var mappedMovie = _mapper.Map<Movie>(cadastrarFilme);
-
+                /*
                 if (movie.Any())
                 {
                    return  Result.Fail("Já existe um filme com esse título cadastrado.");
                 }
+                */
                 await _movieRepository.Add(mappedMovie);
                 await _movieRepository.SaveChanges();
 
@@ -102,7 +106,19 @@ namespace Service.Services
             {
                 return Result.Fail("Erro ao cadastrar o filme.");
             }
+        }
 
+        public async Task<Result> InactivateMovie(int id)
+        {
+            var movie = await _movieRepository.GetById(id);
+
+            if (movie == null)
+            {
+                return Result.Fail("Esse id não está cadastrado.");
+            }
+            movie.Active = false;
+            await _movieRepository.SaveChanges();
+            return Result.Ok();
         }
     }
 }

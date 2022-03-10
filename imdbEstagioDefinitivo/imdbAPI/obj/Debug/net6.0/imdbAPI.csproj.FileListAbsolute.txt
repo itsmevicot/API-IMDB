@@ -66,3 +66,4 @@ C:\Users\victor.matheus\Desktop\victor\Projeto\Desafio-Estagio-Ind\imdbEstagioDe
 C:\Users\victor.matheus\Desktop\victor\Projeto\Desafio-Estagio-Ind\imdbEstagioDefinitivo\imdbAPI\bin\Debug\net6.0\FluentResults.dll
 C:\Users\victor.matheus\Desktop\victor\Projeto\Desafio-Estagio-Ind\imdbEstagioDefinitivo\imdbAPI\bin\Debug\net6.0\Service.dll
 C:\Users\victor.matheus\Desktop\victor\Projeto\Desafio-Estagio-Ind\imdbEstagioDefinitivo\imdbAPI\bin\Debug\net6.0\Service.pdb
+C:\Users\victor.matheus\Desktop\victor\Projeto\Desafio-Estagio-Ind\imdbEstagioDefinitivo\imdbAPI\obj\Debug\net6.0\imdbAPI.MvcApplicationPartsAssemblyInfo.cs

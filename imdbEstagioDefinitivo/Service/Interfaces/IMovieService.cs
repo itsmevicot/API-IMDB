@@ -16,5 +16,6 @@ namespace Service.Interfaces
         Task<Result<ReadMovieDto>> SearchMovieByGenre(string genre);
         Task<Result<ReadMovieDto>> SearchMovieByTitle(string title);
         Task<Result> RegisterMovie(CreateMovieDTO cadastrarFilme);
+        Task<Result> InactivateMovie(int id);
     }
 }
