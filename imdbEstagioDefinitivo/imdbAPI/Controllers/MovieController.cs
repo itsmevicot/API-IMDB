@@ -27,12 +27,12 @@ namespace imdbAPI.Controllers
         }
 
         [HttpGet]
-        [Route("SearchByActor")]
+        [Route("SearchByActor/{name}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public IActionResult BuscarFilmePorAtor([FromBody] string name) 
+        public async Task<IActionResult> BuscarFilmePorAtorAsync(string name) 
         {
-            var filmes = _movieService.SearchMovieByActor(name);
-            if (filmes == null)
+            var filmes = await _movieService.SearchMovieByActor(name);
+            if (filmes.IsFailed)
             {
                 return NotFound();
             }
@@ -41,55 +41,55 @@ namespace imdbAPI.Controllers
         }
 
         [HttpGet]
-        [Route("SearchByGenre")]
+        [Route("SearchByGenre/{genre}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
 
-        public IActionResult BuscarFilmePorGenero([FromBody] string genre)
+        public async Task<IActionResult> BuscarFilmePorGenero(string genre)
         {
-            var filmes = _movieService.SearchMovieByGenre(genre);
-            if (filmes == null)
+            var filmes = await _movieService.SearchMovieByGenre(genre);
+            if (filmes.IsFailed)
             {
                 return NotFound();
             }
-            return Ok(filmes);
+            return Ok(filmes.Value);
         }
 
         [HttpGet]
-        [Route("SearchByTitle")]
+        [Route("SearchByTitle/{title}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
 
-        public IActionResult BuscarFilmePorTitulo([FromBody] string title)
+        public async Task<IActionResult> BuscarFilmePorTitulo(string title)
         {
-            var filmes = _movieService.SearchMovieByTitle(title);
-            if (filmes == null)
+            var filmes = await _movieService.SearchMovieByTitle(title);
+            if (filmes.IsFailed)
             {
                 return NotFound();
             }
-            return Ok(filmes);
+            return Ok(filmes.Value);
         }
 
 
         [HttpGet]
-        [Route("SearchByDirector")]
+        [Route("SearchByDirector/{director}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
 
-        public IActionResult BuscarFilmePorDiretor([FromBody] string director)
+        public async Task<IActionResult> BuscarFilmePorDiretorAsync(string director)
         {
-            var filmes = _movieService.SearchMovieByDirector(director);
+            var filmes = await _movieService.SearchMovieByDirector(director);
             if (filmes == null)
             {
                 return NotFound();
             }
-            return Ok(filmes);
+            return Ok(filmes.Value);
         }
 
         [HttpGet]
         [Route("GetById/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
 
-        public IActionResult BuscarFilmePorId(int id)
+        public async Task<IActionResult> BuscarFilmePorIdAsync(int id)
         {
-            var filme = _movieService.GetById(id);
+            var filme = await _movieService.GetById(id);
             if (filme == null)
             {
                 return NotFound();
@@ -100,10 +100,14 @@ namespace imdbAPI.Controllers
         [HttpPut]
         [Route("InactivateMovie/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public IActionResult InativarFilmePorId(int id)
+        public async Task<IActionResult> InativarFilmePorIdAsync(int id)
         {
-            var movie = _movieService.InactivateMovie(id);
-            return Ok(movie);
+            var movie = await _movieService.InactivateMovie(id);
+            if (movie.IsFailed)
+            {
+                return BadRequest();
+            }
+            return Ok();
         }
 
     }

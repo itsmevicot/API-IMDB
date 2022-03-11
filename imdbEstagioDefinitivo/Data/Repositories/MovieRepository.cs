@@ -19,20 +19,14 @@ namespace Data.Repositories
         {
         
         }
-
-        public async Task<Movie> GetById(int id)
-        {
-            return await GetById(id);
-        }
-
         public async Task<IQueryable<Movie>> SearchMovieByDirector(string Diretor)
         {
-            return await GetAll(movie => movie.Director == Diretor);
+            return await GetAll(movie => movie.Director.Contains(Diretor));
         }
 
         public async Task<IQueryable<Movie>> SearchMovieByTitle(string Title)
         {
-            return await GetAll(movie => movie.Title.Contains(Title));
+            return await base.GetAll(movie => movie.Title.Contains(Title));
         }
 
         

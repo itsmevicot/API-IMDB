@@ -36,48 +36,48 @@ namespace Service.Services
             return mappedMovie;
         }
 
-        public async Task<Result<ReadMovieDto>> SearchMovieByDirector(string director)
+        public async Task<Result<IEnumerable<ReadMovieDto>>> SearchMovieByDirector(string director)
         {
             var movie = await _movieRepository.SearchMovieByDirector(director);
             if (movie == null)
             {
                 Result.Fail("O diretor buscado não existe ou não dirigiu nenhum filme cadastrado.");
             }
-            var mappedMovie = _mapper.Map<ReadMovieDto>(movie);
+            var mappedMovie = _mapper.Map<IEnumerable<ReadMovieDto>>(movie);
             return Result.Ok(mappedMovie);
         }
 
-        public async Task<Result<ReadMovieDto>> SearchMovieByTitle(string title)
+        public async Task<Result<IEnumerable<ReadMovieDto>>> SearchMovieByTitle(string title)
         {
-            var movie = _movieRepository.SearchMovieByTitle(title);
+            var movie = await _movieRepository.SearchMovieByTitle(title);
             if (movie == null)
             {
                 Result.Fail("O título buscado não existe.");
             }
-            var mappedMovie = _mapper.Map<ReadMovieDto>(movie);
+            var mappedMovie = _mapper.Map<IEnumerable<ReadMovieDto>>(movie);
             return Result.Ok(mappedMovie);
         }
 
-        public async Task<Result<ReadMovieDto>> SearchMovieByGenre(string genre)
+        public async Task<Result<IEnumerable<ReadMovieDto>>> SearchMovieByGenre(string genre)
         {
-            var movie = _movieRepository.SearchMovieByGenre(genre);
+            var movie = await _movieRepository.SearchMovieByGenre(genre);
             if (movie == null)
             {
                 return Result.Fail("O gênero buscado não existe.");
             }
-            var mappedMovie = _mapper.Map<ReadMovieDto>(movie);
+            var mappedMovie = _mapper.Map<IEnumerable<ReadMovieDto>>(movie);
             return Result.Ok(mappedMovie);
 
         }
 
-        public async Task<Result<ReadMovieDto>> SearchMovieByActor(string actor)
+        public async Task<Result<IEnumerable<ReadMovieDto>>> SearchMovieByActor(string actor)
         {
-            var movie = _movieRepository.SearchMovieByActor(actor);
+            var movie = await _movieRepository.SearchMovieByActor(actor);
             if (movie == null)
             {
                 Result.Fail("O ator pesquisado não existe.");
             }
-            var mappedMovie = _mapper.Map<ReadMovieDto>(movie);
+            var mappedMovie = _mapper.Map<IEnumerable<ReadMovieDto>>(movie);
             return Result.Ok(mappedMovie);
         }
 

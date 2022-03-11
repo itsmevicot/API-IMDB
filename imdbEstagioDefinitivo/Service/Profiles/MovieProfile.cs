@@ -13,7 +13,10 @@ namespace Service.Profiles
     {
         public MovieProfile()
         {
-            CreateMap<UpdateMovieDTO, Movie>();
+            CreateMap<UpdateMovieDTO, Movie>()
+                .ReverseMap();
+            CreateMap<ReadMovieDto, Movie>()
+                .ReverseMap();
             CreateMap<Movie, CreateMovieDTO>()
                 .ForMember(dto => dto.Director, opt => opt.MapFrom(x => x.Director))
                 .ForMember(dto => dto.Duration, opt => opt.MapFrom(x=> x.Duration))
