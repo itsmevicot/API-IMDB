@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Data.Mapping
 {
-    internal class EntityMapping
+    public class EntityMapping
     {
     }
 }

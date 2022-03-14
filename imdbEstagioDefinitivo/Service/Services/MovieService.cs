@@ -81,22 +81,16 @@ namespace Service.Services
             return Result.Ok(mappedMovie);
         }
 
-        public async Task<Result> RegisterMovie(CreateMovieDTO cadastrarFilme)
+        public async Task<Result> RegisterMovie(CreateMovieDTO registerMovie)
         {
-            if((await _movieRepository.GetAll()).Any(m=>m.Title == cadastrarFilme.Title))
+            if((await _movieRepository.GetAll()).Any(m=>m.Title == registerMovie.Title))
                    return Result.Fail("Já existe um filme com esse título cadastrado.");
 
-            var movie = await _movieRepository.SearchMovieByTitle(cadastrarFilme.Title);
+            var movie = await _movieRepository.SearchMovieByTitle(registerMovie.Title);
 
             try
             {
-                var mappedMovie = _mapper.Map<Movie>(cadastrarFilme);
-                /*
-                if (movie.Any())
-                {
-                   return  Result.Fail("Já existe um filme com esse título cadastrado.");
-                }
-                */
+                var mappedMovie = _mapper.Map<Movie>(registerMovie);
                 await _movieRepository.Add(mappedMovie);
                 await _movieRepository.SaveChanges();
 
