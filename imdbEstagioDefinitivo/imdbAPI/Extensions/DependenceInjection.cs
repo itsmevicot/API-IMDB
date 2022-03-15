@@ -20,6 +20,7 @@ namespace imdbAPI.Extensions
             services.AddScoped<IHasherService, HasherService>();
             services.AddScoped<IMovieService, MovieService>();
             services.AddScoped<IUserAuthService, UserAuthService>();
+            services.AddScoped<ITokenService, TokenService>();
 
             return services;
         }

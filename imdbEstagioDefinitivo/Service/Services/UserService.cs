@@ -4,6 +4,7 @@ using Domain.Interfaces.Repositories;
 using FluentResults;
 using Service.Dtos.UserDTO;
 using Service.Interfaces;
+using Service.Services.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,10 +17,14 @@ namespace Service.Services
     {
         private readonly IMapper _mapper;
         private readonly IUserRepository _userRepository;
-        public UserService(IMapper mapper, IUserRepository userRepository)
+        private readonly ITokenService _tokenService;
+        private readonly IHasherService _hasherService;
+        public UserService(IMapper mapper, IUserRepository userRepository, ITokenService tokenService, IHasherService hasherService)
         {
             _mapper = mapper;
             _userRepository = userRepository;
+            _hasherService = hasherService;
+            _tokenService = tokenService;
         }
 
 
@@ -51,9 +56,16 @@ namespace Service.Services
 
             var user = await _userRepository.GetUserByEmail(registerUser.Email);
 
+            if (registerUser.Password != registerUser.RePassword)
+            {
+                return Result.Fail("As senhas não correspondem!");
+            }
+
             try
             {
                 var mappedUser = _mapper.Map<User>(registerUser);
+
+                mappedUser.Password = _hasherService.EncryptPassword(mappedUser.Password);
                 await _userRepository.Add(mappedUser);
                 await _userRepository.SaveChanges();
 
@@ -63,6 +75,43 @@ namespace Service.Services
             {
                 return Result.Fail("Erro ao cadastrar o usuário.");
             }
+        }
+
+        public async Task<Result<LoginTokenDTO>> Login(LoginDTO login)
+        {
+            var user = await _userRepository.GetUserByEmail(login.Email);
+
+            if (user == null)
+            {
+                return Result.Fail<LoginTokenDTO>("Email não cadastrado no sistema.");
+            }
+            
+            var confirmPassowrd = _hasherService.VerifyPassword(login.Password, user.Password);
+
+            if (confirmPassowrd)
+            {
+                var token = await _tokenService.GenerateToken(user.Id, user.Email, user.Role);
+                var loggedUser = _mapper.Map<LoginTokenDTO>(user);
+                loggedUser.Token = token;
+
+                return Result.Ok(loggedUser);
+
+            }
+
+            return Result.Fail<LoginTokenDTO>("Senha inválida.");            
+        }
+
+        public async Task<Result> DeleteUser(int id)
+        {
+            var user = await _userRepository.GetById(id);
+            
+            if (user == null)
+            {
+                return Result.Fail("Esse usuário não existe.");
+            }
+            user.Active = false;
+
+            return Result.Ok();
         }
     }
 }

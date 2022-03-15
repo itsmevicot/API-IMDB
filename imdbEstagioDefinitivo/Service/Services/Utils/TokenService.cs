@@ -1,5 +1,6 @@
 ﻿using Domain.Enums;
 using Microsoft.IdentityModel.Tokens;
+using Service.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Service.Services.Utils
 {
-    public class TokenService
+    public class TokenService : ITokenService
     {
         public async Task<string> GenerateToken(int id, string email, Role role)
         {

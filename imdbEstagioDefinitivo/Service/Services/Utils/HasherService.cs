@@ -10,13 +10,10 @@ namespace Service.Services.Utils
 {
     public class HasherService : IHasherService
     {
-        private readonly HashAlgorithm _hasher;
-        public HasherService()
-        {
-            _hasher = SHA256.Create();
-        }
+        
         public string EncryptPassword(string senha)
         {
+             HashAlgorithm _hasher = SHA256.Create();
             var encodedValue = Encoding.UTF8.GetBytes(senha);
             var senhaEncriptada = _hasher.ComputeHash(encodedValue);
 

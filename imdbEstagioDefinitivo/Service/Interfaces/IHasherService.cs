@@ -9,7 +9,6 @@ namespace Service.Interfaces
     public interface IHasherService
     {
         string EncryptPassword(string senha);
-        bool VerifyPassword(string senha, string senhaEncriptada);
-
+        bool VerifyPassword(string password, string encryptedPassword);
     }
 }
