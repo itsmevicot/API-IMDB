@@ -10,8 +10,11 @@ namespace Service.Interfaces
 {
     public interface IUserService
     {
+        Task<Result> DeleteUser(int id);
         Task<Result<IEnumerable<ReadUserDTO>>> GetAllUsersByNickname();
+        Task<Result<LoginTokenDTO>> Login(LoginDTO login);
         Task<Result> RegisterUser(CreateUserDTO registerUser);
         Task<Result<ReadUserDTO>> SearchUserByEmail(string email);
+        Task<Result> SwitchRoleToAdmin(int id);
     }
 }

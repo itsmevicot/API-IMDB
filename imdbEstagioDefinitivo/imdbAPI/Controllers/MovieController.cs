@@ -23,7 +23,7 @@ namespace imdbAPI.Controllers
         {
             var result = await _movieService.RegisterMovie(registerMovie);
             if (result.IsSuccess) return Ok();
-            return BadRequest(result.Errors);
+            return BadRequest(result.Reasons);
         }
 
         [HttpGet]
@@ -34,7 +34,7 @@ namespace imdbAPI.Controllers
             var filmes = await _movieService.SearchMovieByActor(name);
             if (filmes.IsFailed)
             {
-                return NotFound();
+                return NotFound(filmes.Reasons);
             }
 
             return Ok(filmes);
@@ -49,7 +49,7 @@ namespace imdbAPI.Controllers
             var filmes = await _movieService.SearchMovieByGenre(genre);
             if (filmes.IsFailed)
             {
-                return NotFound();
+                return NotFound(filmes.ToString());
             }
             return Ok(filmes.Value);
         }
@@ -63,7 +63,7 @@ namespace imdbAPI.Controllers
             var filmes = await _movieService.SearchMovieByTitle(title);
             if (filmes.IsFailed)
             {
-                return NotFound();
+                return NotFound(filmes.ToString());
             }
             return Ok(filmes.Value);
         }
@@ -78,7 +78,7 @@ namespace imdbAPI.Controllers
             var filmes = await _movieService.SearchMovieByDirector(director);
             if (filmes == null)
             {
-                return NotFound();
+                return NotFound(filmes.ToString());
             }
             return Ok(filmes.Value);
         }
@@ -105,9 +105,9 @@ namespace imdbAPI.Controllers
             var movie = await _movieService.InactivateMovie(id);
             if (movie.IsFailed)
             {
-                return BadRequest();
+                return BadRequest(movie.ToString());
             }
-            return Ok();
+            return Ok(movie.ToString());
         }
 
     }

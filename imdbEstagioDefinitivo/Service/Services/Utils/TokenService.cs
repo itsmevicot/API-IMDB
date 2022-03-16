@@ -16,7 +16,7 @@ namespace Service.Services.Utils
         public async Task<string> GenerateToken(int id, string email, Role role)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes("JwtSecretKey");
+            var key = Encoding.ASCII.GetBytes("JwtSecretKey123321");
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new Claim[]

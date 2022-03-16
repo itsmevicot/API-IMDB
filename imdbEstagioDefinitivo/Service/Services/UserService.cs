@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Domain.Entities;
+using Domain.Enums;
 using Domain.Interfaces.Repositories;
 using FluentResults;
 using Service.Dtos.UserDTO;
@@ -65,6 +66,7 @@ namespace Service.Services
             {
                 var mappedUser = _mapper.Map<User>(registerUser);
 
+                
                 mappedUser.Password = _hasherService.EncryptPassword(mappedUser.Password);
                 await _userRepository.Add(mappedUser);
                 await _userRepository.SaveChanges();
@@ -111,6 +113,19 @@ namespace Service.Services
             }
             user.Active = false;
 
+            return Result.Ok();
+        }
+
+        public async Task<Result> SwitchRoleToAdmin(int id)
+        {
+            var user = await _userRepository.GetById(id);
+
+            if(user == null)
+            {
+                return Result.Fail("Esse usuário não existe");
+            }
+            user.ChangeRole(Role.Administrador);
+            _userRepository.SaveChanges();
             return Result.Ok();
         }
     }

@@ -12,7 +12,7 @@ namespace Domain.Entities
         public string Email { get; set; }
         public string Password { get; set; }
         public string Nickname { get; set; }
-        public Role Role { get; set; }
+        public Role Role { get; set; } = Role.Usuario;
         public virtual ICollection<Vote> Votes { get; set; }    
         
         public User()

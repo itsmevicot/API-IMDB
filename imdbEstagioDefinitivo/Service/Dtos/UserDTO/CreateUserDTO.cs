@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,5 +13,6 @@ namespace Service.Dtos.UserDTO
         public string Password { get; set; }
         public string RePassword { get; set; }
         public string Nickname { get; set; }
-    }
+
+    }   
 }

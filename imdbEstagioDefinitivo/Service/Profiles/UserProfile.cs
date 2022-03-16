@@ -14,6 +14,12 @@ namespace Service.Profiles
         public UserProfile()
         {
             CreateMap<UpdateUserDTO, User>();
+            CreateMap<CreateUserDTO, User>()
+                .ReverseMap();
+            CreateMap<LoginDTO, User>()
+                .ReverseMap();
+            CreateMap<User, LoginTokenDTO>();
+            CreateMap<ReadUserDTO, User>();
         }
     }
 }

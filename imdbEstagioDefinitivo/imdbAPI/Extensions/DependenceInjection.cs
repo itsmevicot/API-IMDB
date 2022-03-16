@@ -21,6 +21,7 @@ namespace imdbAPI.Extensions
             services.AddScoped<IMovieService, MovieService>();
             services.AddScoped<IUserAuthService, UserAuthService>();
             services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<IUserService, UserService>();
 
             return services;
         }

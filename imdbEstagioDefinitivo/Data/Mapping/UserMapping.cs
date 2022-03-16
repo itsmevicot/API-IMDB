@@ -23,7 +23,8 @@ namespace Data.Mapping
                 .IsRequired();
 
             builder.Property(user => user.Role)
-                .IsRequired();
+                .IsRequired()
+                .HasConversion<byte>();
 
             builder.Property(user => user.Nickname)
                 .IsRequired();
