@@ -1,4 +1,5 @@
 ﻿using Domain.Enums;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Service.Interfaces;
 using System;
@@ -13,10 +14,16 @@ namespace Service.Services.Utils
 {
     public class TokenService : ITokenService
     {
+        private readonly IConfiguration _configuration;
+        public TokenService(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+        
         public async Task<string> GenerateToken(int id, string email, Role role)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes("JwtSecretKey123321");
+            var key = Encoding.ASCII.GetBytes(_configuration.GetSection("JwtSecretKey").Value);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new Claim[]

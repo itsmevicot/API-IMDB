@@ -44,5 +44,10 @@ namespace Domain.Entities
             Active = status;
         }
 
+        public void InactivateUser()
+        {
+            Active = false;
+        }
+
     }
 }

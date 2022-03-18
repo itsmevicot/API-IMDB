@@ -97,7 +97,6 @@ namespace Service.Services
                 loggedUser.Token = token;
 
                 return Result.Ok(loggedUser);
-
             }
 
             return Result.Fail<LoginTokenDTO>("Senha inválida.");            
@@ -120,13 +119,52 @@ namespace Service.Services
         {
             var user = await _userRepository.GetById(id);
 
-            if(user == null)
+            if (user == null)
             {
                 return Result.Fail("Esse usuário não existe");
             }
-            user.ChangeRole(Role.Administrador);
-            _userRepository.SaveChanges();
+
+            else if (user.Role == Role.Administrador)
+            {
+                return Result.Fail("Esse usuário já é um administrador");
+            }
+            else
+            {
+                user.ChangeRole(Role.Administrador);
+                _userRepository.SaveChanges();
+                return Result.Ok();
+            }
+        }
+
+        public async Task<Result<IEnumerable<ReadUserDTO>>> GetActiveUsers()
+        {
+            var result = await _userRepository.GetAll(x => x.Role == Role.Usuario);
+            result = result.OrderBy(x => x.Nickname);
+            if (result == null)
+            {
+                return Result.Fail("Não há usuários cadastrados.");
+            }
+            var mappedResult = _mapper.Map<IEnumerable<ReadUserDTO>>(result);
+            return Result.Ok(mappedResult);
+        }
+
+        public async Task<Result> InactivateUser(int id) 
+        {
+            var user = await _userRepository.GetById(id);
+            if (user == null)
+            {
+                return Result.Fail("Esse usuário não existe.");
+            }        
+            user.InactivateUser();
+            await _userRepository.SaveChanges();
             return Result.Ok();
         }
+
+        /*
+        public async Task<Result<UpdateUserDTO>> UpdateUser(int id, UpdateUserDTO updateUser)
+        {
+            var user = await _userRepository.GetBy
+        }
+        */
     }
 }

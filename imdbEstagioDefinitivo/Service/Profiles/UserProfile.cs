@@ -19,7 +19,8 @@ namespace Service.Profiles
             CreateMap<LoginDTO, User>()
                 .ReverseMap();
             CreateMap<User, LoginTokenDTO>();
-            CreateMap<ReadUserDTO, User>();
+            CreateMap<ReadUserDTO, User>()
+                .ReverseMap();
         }
     }
 }

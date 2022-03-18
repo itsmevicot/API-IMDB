@@ -13,7 +13,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(ActorProfile).Assembly);
 
-builder.Services.AddDependenceInjection();
+builder.Services.AddDependenceInjection()
+    .AddAuthenticationConfig(builder.Configuration)
+    .AddCustomSwaggerGen(); 
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -25,7 +28,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
+
 
 app.MapControllers();
 
