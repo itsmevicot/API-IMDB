@@ -56,7 +56,7 @@ namespace Service.Services
                 return Result.Fail("Não existe ator cadastrado nesse id.");
             }
             actor.Active = false;
-            _actorRepository.SaveChanges();
+            await _actorRepository.SaveChanges();
             return Result.Ok();
         }
 

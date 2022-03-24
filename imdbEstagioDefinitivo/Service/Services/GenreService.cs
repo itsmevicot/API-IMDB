@@ -57,7 +57,7 @@ namespace Service.Services
                 return Result.Fail("Não existe gênero cadastrado nesse id.");
             }
             genre.Active = false;
-            _genreRepository.SaveChanges();
+            await _genreRepository.SaveChanges();
             return Result.Ok();
         }
 

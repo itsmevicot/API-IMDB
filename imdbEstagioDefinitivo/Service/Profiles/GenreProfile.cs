@@ -19,6 +19,8 @@ namespace Service.Profiles
                 .ReverseMap();
             CreateMap<CreateGenreDTO, Genre>()
                 .ReverseMap();
+            CreateMap<String, Genre>()
+                .ForMember(x => x.Name, opts => opts.MapFrom(x => x));
         }
        
     }
