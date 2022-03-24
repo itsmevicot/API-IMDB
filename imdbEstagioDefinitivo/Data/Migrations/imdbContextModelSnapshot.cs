@@ -159,13 +159,13 @@ namespace Data.Migrations
                     b.Property<bool>("Active")
                         .HasColumnType("bit");
 
-                    b.Property<int>("AverageVote")
-                        .HasColumnType("int");
-
                     b.Property<int>("MovieId")
                         .HasColumnType("int");
 
                     b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("VoteEvaluation")
                         .HasColumnType("int");
 
                     b.HasKey("Id");

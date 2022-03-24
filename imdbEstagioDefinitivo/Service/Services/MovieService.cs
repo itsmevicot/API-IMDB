@@ -23,15 +23,16 @@ namespace Service.Services
             _movieRepository = movieRepository;
         }
 
-        public async Task<ReadMovieDto> GetById(int id)
+        public async Task<Result<ReadMovieDto>> GetById(int id)
         {
             var movie = await _movieRepository.GetById(id);
             if (movie == null)
             {
-                return null;
+                return Result.Fail("O ID buscado não corresponde a nenhum filme.");
             }
 
-            var mappedMovie = _mapper.Map<ReadMovieDto>(movie);
+            var mappedMovie = _mapper.Map<Result<ReadMovieDto>>(movie);
+            
 
             return mappedMovie;
         }
@@ -41,7 +42,7 @@ namespace Service.Services
             var movie = await _movieRepository.SearchMovieByDirector(director);
             if (movie == null)
             {
-                Result.Fail("O diretor buscado não existe ou não dirigiu nenhum filme cadastrado.");
+                return Result.Fail("O diretor buscado não existe ou não dirigiu nenhum filme cadastrado.");
             }
             var mappedMovie = _mapper.Map<IEnumerable<ReadMovieDto>>(movie);
             return Result.Ok(mappedMovie);
@@ -52,7 +53,7 @@ namespace Service.Services
             var movie = await _movieRepository.SearchMovieByTitle(title);
             if (movie == null)
             {
-                Result.Fail("O título buscado não existe.");
+                return Result.Fail("O título buscado não existe.");
             }
             var mappedMovie = _mapper.Map<IEnumerable<ReadMovieDto>>(movie);
             return Result.Ok(mappedMovie);
@@ -75,7 +76,7 @@ namespace Service.Services
             var movie = await _movieRepository.SearchMovieByActor(actor);
             if (movie == null)
             {
-                Result.Fail("O ator pesquisado não existe.");
+                return Result.Fail("O ator pesquisado não existe.");
             }
             var mappedMovie = _mapper.Map<IEnumerable<ReadMovieDto>>(movie);
             return Result.Ok(mappedMovie);
@@ -85,8 +86,6 @@ namespace Service.Services
         {
             if((await _movieRepository.GetAll()).Any(m=>m.Title == registerMovie.Title))
                    return Result.Fail("Já existe um filme com esse título cadastrado.");
-
-            var movie = await _movieRepository.SearchMovieByTitle(registerMovie.Title);
 
             try
             {
@@ -102,7 +101,7 @@ namespace Service.Services
             }
         }
 
-        public async Task<Result> InactivateMovie(int id)
+        public async Task<Result> DeleteMovie(int id)
         {
             var movie = await _movieRepository.GetById(id);
 
@@ -113,6 +112,18 @@ namespace Service.Services
             movie.Active = false;
             await _movieRepository.SaveChanges();
             return Result.Ok();
+        }
+
+        public async Task<Result<IEnumerable<ReadMovieDto>>> GetAllMovies()
+        {
+            var movies = await _movieRepository.GetAll();
+            if (movies == null)
+            {
+                return Result.Fail("Não há filmes cadastrados.");
+            }
+
+            var mappedMovies = _mapper.Map<IEnumerable<ReadMovieDto>>(movies);
+            return Result.Ok(mappedMovies);
         }
     }
 }

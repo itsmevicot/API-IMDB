@@ -13,7 +13,12 @@ namespace Service.Profiles
     {
         public GenreProfile()
         {
-            CreateMap<UpdateGenreDTO, Genre>();
+            CreateMap<UpdateGenreDTO, Genre>()
+                .ReverseMap();
+            CreateMap<ReadGenreDTO, Genre>()
+                .ReverseMap();
+            CreateMap<CreateGenreDTO, Genre>()
+                .ReverseMap();
         }
        
     }

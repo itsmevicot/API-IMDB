@@ -8,6 +8,6 @@ namespace Service.Dtos.ActorDTO
 {
     public class CreateActorDTO
     {
-       public List<int> ActorId { get; set; }
+       public string ActorName { get; set; }
     }
 }

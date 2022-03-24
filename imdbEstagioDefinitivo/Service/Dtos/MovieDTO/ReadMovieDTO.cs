@@ -14,7 +14,7 @@ namespace Service.Dtos.MovieDTO
         public string Description { get; set; }
         public int Duration { get; set; }
         public string Director { get; set; }
-        public int AverageVote { get; set; }
+        public decimal AverageVote { get; set; }
         public int VoteCounter { get; set; }
         public DateTime ReleaseDate { get; set; }
         public List<Actor> Actors { get; set; } 

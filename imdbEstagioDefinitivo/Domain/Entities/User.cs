@@ -34,6 +34,11 @@ namespace Domain.Entities
             Nickname = newNickname;
         }
 
+        public void ChangeEmail(string newEmail)
+        {
+            Email = newEmail;
+        }
+
         public void ChangeRole(Role role)
         {
             Role = role;

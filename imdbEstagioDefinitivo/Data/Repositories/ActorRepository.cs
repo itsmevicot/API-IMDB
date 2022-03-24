@@ -18,10 +18,5 @@ namespace Data.Repositories
 
 
         }
-
-        public async Task<Actor> GetById(int id)
-        {
-            return await GetById(id);
-        }
     }
 }

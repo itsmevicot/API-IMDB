@@ -55,8 +55,6 @@ namespace Service.Services
             if ((await _userRepository.GetAll()).Any(m => m.Email == registerUser.Email))
                 return Result.Fail("Esse email já está cadastrado.");
 
-            var user = await _userRepository.GetUserByEmail(registerUser.Email);
-
             if (registerUser.Password != registerUser.RePassword)
             {
                 return Result.Fail("As senhas não correspondem!");
@@ -131,7 +129,7 @@ namespace Service.Services
             else
             {
                 user.ChangeRole(Role.Administrador);
-                _userRepository.SaveChanges();
+                await _userRepository.SaveChanges();
                 return Result.Ok();
             }
         }
@@ -148,23 +146,35 @@ namespace Service.Services
             return Result.Ok(mappedResult);
         }
 
-        public async Task<Result> InactivateUser(int id) 
+        public async Task<Result> InactivateUser(int id)
         {
             var user = await _userRepository.GetById(id);
             if (user == null)
             {
                 return Result.Fail("Esse usuário não existe.");
-            }        
+            }
             user.InactivateUser();
             await _userRepository.SaveChanges();
             return Result.Ok();
         }
 
         /*
-        public async Task<Result<UpdateUserDTO>> UpdateUser(int id, UpdateUserDTO updateUser)
+        public async Task<Result> Update(int id, UpdateUserDTO updateUser)
         {
-            var user = await _userRepository.GetBy
+            var user = await _userRepository.GetById(id);
+            if (user == null)
+            {
+                return Result.Fail("O usuário pesquisado não existe.");
+            }
+
+            var email = await _userRepository.GetUserByEmail(updateUser.Email);
+
+            if (email != null)
+            {
+                
+            }
         }
         */
+
     }
 }

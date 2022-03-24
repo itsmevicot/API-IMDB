@@ -13,7 +13,10 @@ namespace Service.Profiles
     {
         public VoteProfile()
         {
-            CreateMap<UpdateVoteDTO, Vote>();
+            CreateMap<UpdateVoteDTO, Vote>()
+                .ReverseMap();
+            CreateMap<AddVoteDTO, Vote>()
+                .ReverseMap();
         }
     }
 }

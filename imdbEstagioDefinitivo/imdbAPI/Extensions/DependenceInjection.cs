@@ -22,6 +22,9 @@ namespace imdbAPI.Extensions
             services.AddScoped<IUserAuthService, UserAuthService>();
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IVoteService, VoteService>();
+            services.AddScoped<IActorService, ActorService>();
+            services.AddScoped<IGenreService, GenreService>();
 
             return services;
         }

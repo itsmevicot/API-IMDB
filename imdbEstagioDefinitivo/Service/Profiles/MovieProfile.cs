@@ -16,7 +16,9 @@ namespace Service.Profiles
             CreateMap<UpdateMovieDTO, Movie>()
                 .ReverseMap();
             CreateMap<ReadMovieDto, Movie>()
-                .ReverseMap();
+                .ReverseMap()
+                .ForMember(dto => dto.AverageVote, opt => opt.MapFrom(x => x.GetAverageVote()));
+      
             CreateMap<Movie, CreateMovieDTO>()
                 .ForMember(dto => dto.Director, opt => opt.MapFrom(x => x.Director))
                 .ForMember(dto => dto.Duration, opt => opt.MapFrom(x=> x.Duration))

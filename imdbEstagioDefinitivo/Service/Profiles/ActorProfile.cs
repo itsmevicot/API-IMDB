@@ -13,8 +13,12 @@ namespace Service.Profiles
     {
         public ActorProfile()
         {
-            CreateMap<Actor, ReadActorDTO>();
-            CreateMap<UpdateActorDTO, Actor>();
+            CreateMap<Actor, ReadActorDTO>()
+                .ReverseMap();
+            CreateMap<UpdateActorDTO, Actor>()
+                .ReverseMap();
+            CreateMap<String, Actor>()
+                .ForMember(x => x.Name, opts=> opts.MapFrom(x => x));
         }
     }
 }

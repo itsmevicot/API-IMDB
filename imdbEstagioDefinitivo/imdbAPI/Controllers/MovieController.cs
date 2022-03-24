@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Service.Dtos.MovieDTO;
+using Service.Dtos.VoteDTO;
 using Service.Interfaces;
 
 namespace imdbAPI.Controllers
@@ -10,10 +11,12 @@ namespace imdbAPI.Controllers
     public class MovieController : ControllerBase
     {
         private readonly IMovieService _movieService;
+        private readonly IVoteService _voteService;
 
-        public MovieController(IMovieService movieService)
+        public MovieController(IMovieService movieService, IVoteService voteService)
         {
             _movieService = movieService;
+            _voteService = voteService;
         }
 
         [HttpPost]
@@ -25,6 +28,21 @@ namespace imdbAPI.Controllers
             if (result.IsSuccess) return Ok();
             return BadRequest(result.Reasons);
         }
+
+        [HttpGet]
+        [Authorize]
+        [Route("GetAllMovies")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> RetornarTodosFilmes()
+        {
+            var result = await _movieService.GetAllMovies();
+            if (result == null)
+            {
+                return NotFound();
+            }
+            return Ok(result.Value);
+        }
+
 
         [HttpGet]
         [Route("SearchByActor/{name}")]
@@ -76,7 +94,7 @@ namespace imdbAPI.Controllers
         public async Task<IActionResult> BuscarFilmePorDiretorAsync(string director)
         {
             var filmes = await _movieService.SearchMovieByDirector(director);
-            if (filmes == null)
+            if (filmes.IsFailed)
             {
                 return NotFound(filmes.ToString());
             }
@@ -97,17 +115,46 @@ namespace imdbAPI.Controllers
             return Ok(filme);
         }
 
-        [HttpPut]
-        [Route("InactivateMovie/{id}")]
+        [HttpDelete]
+        [Route("Delete/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> InativarFilmePorIdAsync(int id)
         {
-            var movie = await _movieService.InactivateMovie(id);
+            var movie = await _movieService.DeleteMovie(id);
             if (movie.IsFailed)
             {
                 return BadRequest(movie.ToString());
             }
             return Ok(movie.ToString());
+        }
+
+        [HttpPost]
+        [Authorize(Roles ="Usuario,Administrador")]
+        [Route("Vote")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> Votar(AddVoteDTO addVote)
+        {
+            var vote = await _voteService.Vote(addVote);
+            if (vote.IsFailed)
+            {
+                return BadRequest(vote.ToString());
+            }
+            return Ok(vote);
+
+        } 
+
+       [HttpPut]
+       [Authorize(Roles = "Usuario, Administrador")]
+       [Route("UpdateVote")]
+       [ProducesResponseType(StatusCodes.Status200OK)]
+       public async Task<IActionResult> AtualizarVoto(UpdateVoteDTO updateVote)
+        {
+            var vote = await _voteService.UpdateVote(updateVote);
+            if (vote.IsFailed)
+            {
+                return BadRequest(vote.ToString());
+            }
+            return Ok(vote);
         }
 
     }

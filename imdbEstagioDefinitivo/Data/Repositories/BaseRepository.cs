@@ -23,9 +23,9 @@ namespace Data.Repositories
             _dbSet = context.Set<T>();    
         }
 
-        public virtual async Task<IQueryable<T>> GetAll() => await Task.FromResult(_dbSet.AsQueryable().Where(x => x.Active == true));
-        public virtual async Task<IQueryable<T>> GetAll(Expression<Func<T, bool>> query) => await Task.FromResult(_dbSet.Where(query).AsQueryable().Where(x => x.Active == true));
-        public virtual async Task<T> GetById(int id) => await _dbSet.FirstOrDefaultAsync(x => x.Id == id && x.Active == true);
+        public virtual async Task<IQueryable<T>> GetAll() => await Task.FromResult(_dbSet.AsQueryable().Where(x => x.Active));
+        public virtual async Task<IQueryable<T>> GetAll(Expression<Func<T, bool>> query) => await Task.FromResult(_dbSet.Where(query).AsQueryable().Where(x => x.Active));
+        public virtual async Task<T> GetById(int id) => await _dbSet.FirstOrDefaultAsync(x => x.Id == id && x.Active);
         public virtual async Task<int> SaveChanges() => await _context.SaveChangesAsync();
 
         public virtual async Task Update (T entity)

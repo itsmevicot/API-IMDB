@@ -10,7 +10,7 @@ namespace Domain.Entities
     {
         public int UserId { get; set; }
         public int MovieId { get; set; }
-        public int AverageVote { get; set; }
+        public int VoteEvaluation { get; set; }
         public virtual User User { get; set;} 
         public virtual Movie Movie { get; set; }
     }
