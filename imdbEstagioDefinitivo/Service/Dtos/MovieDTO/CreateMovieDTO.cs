@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Service.Dtos.ActorDTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,5 @@ namespace Service.Dtos.MovieDTO
         public int Duration { get; set; }
         public DateTime ReleaseDate { get; set; }
         public string Director { get; set; }
-
     }
 }

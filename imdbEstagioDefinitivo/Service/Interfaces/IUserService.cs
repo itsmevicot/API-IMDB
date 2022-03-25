@@ -18,5 +18,6 @@ namespace Service.Interfaces
         Task<Result> RegisterUser(CreateUserDTO registerUser);
         Task<Result<ReadUserDTO>> SearchUserByEmail(string email);
         Task<Result> SwitchRoleToAdmin(int id);
+        Task<Result> Update(int id, UpdateUserDTO updateUser);
     }
 }

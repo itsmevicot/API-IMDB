@@ -109,6 +109,7 @@ namespace Service.Services
                 return Result.Fail("Esse usuário não existe.");
             }
             user.Active = false;
+            await _userRepository.SaveChanges();
 
             return Result.Ok();
         }
@@ -158,7 +159,6 @@ namespace Service.Services
             return Result.Ok();
         }
 
-        /*
         public async Task<Result> Update(int id, UpdateUserDTO updateUser)
         {
             var user = await _userRepository.GetById(id);
@@ -171,10 +171,22 @@ namespace Service.Services
 
             if (email != null)
             {
-                
+                return Result.Fail("Esse email já está cadastrado.");
             }
+
+            if (updateUser.Password != updateUser.RePassword)
+            {
+                return Result.Fail("As senhas não conferem!");
+            }
+
+            user.ChangeEmail(updateUser.Email);
+            user.ChangeName(updateUser.Nickname);         
+            user.ChangePassword(_hasherService.EncryptPassword(updateUser.Password));
+
+            await _userRepository.SaveChanges();
+            return Result.Ok();
         }
-        */
+        
 
     }
 }

@@ -14,20 +14,6 @@ namespace Domain.Entities
         public string Nickname { get; set; }
         public Role Role { get; set; } = Role.Usuario;
         public virtual ICollection<Vote> Votes { get; set; }    
-        
-        public User()
-        {
-
-        }
-
-        public User(int id, string password, string nickname, string email, Role role)
-        {
-            Id = id;
-            Password = password;
-            Nickname = nickname;
-            Email = email;
-            Role = role;
-        }
 
         public void ChangeName(string newNickname)
         {
@@ -44,6 +30,11 @@ namespace Domain.Entities
             Role = role;
         }
 
+        public void ChangePassword(string newPassword)
+        {
+            Password = newPassword;
+        }
+     
         public void IsActive(bool status)
         {
             Active = status;

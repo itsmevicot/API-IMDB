@@ -71,6 +71,17 @@ namespace imdbAPI.Controllers
             if (response.IsSuccess) return Ok();
             return BadRequest(response.Reasons);
         }
+
+        [HttpPut]
+        [Authorize(Roles= "Usuario, Administrador")]
+        [Route("Edit")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> EditarUsuario(UpdateUserDTO updateUser)
+        {
+            var update = await _userService.Update((Convert.ToInt32(User.Claims.First(x => x.Type == "Id").Value)), updateUser);
+            if (update.IsSuccess) return Ok();
+            return BadRequest(update.Reasons);
+        }
     }
 
 }
