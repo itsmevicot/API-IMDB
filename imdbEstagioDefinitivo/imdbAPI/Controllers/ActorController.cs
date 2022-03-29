@@ -64,9 +64,9 @@ namespace imdbAPI.Controllers
         [Authorize(Roles = "Usuario, Administrador")]
         [Route("GetAll")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetAllActors()
+        public async Task<IActionResult> GetAllActors(int offset, int limit)
         {
-            var actors = await _actorService.GetAll();
+            var actors = await _actorService.GetAll(offset, limit);
             if (actors.IsFailed) return BadRequest(actors.ToString());
             return Ok(actors.Value);
         }

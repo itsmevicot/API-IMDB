@@ -54,10 +54,10 @@ namespace imdbAPI.Controllers
         [Authorize(Roles = "Administrador")]
         [Route("GetActiveUsers")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IActionResult> MostrarUsuariosAtivos()
+        public async Task<IActionResult> MostrarUsuariosAtivos(int offset, int limit)
         {
-            var response = await _userService.GetActiveUsers();
-            if (response.IsSuccess) return Ok(response.Value) ;
+            var response = await _userService.GetActiveUsers(offset, limit);
+            if (response.IsSuccess) return Ok(response.Value);
             return BadRequest(response.Reasons);
         }
 

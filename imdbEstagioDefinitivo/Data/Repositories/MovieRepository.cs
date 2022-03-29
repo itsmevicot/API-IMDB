@@ -14,50 +14,57 @@ namespace Data.Repositories
 {
     public class MovieRepository : BaseRepository<Movie>, IMovieRepository
     {
-        private readonly DbSet<Movie> _dbSet;
         public MovieRepository(imdbContext context) : base(context)
         {
         
         }
         public async Task<IQueryable<Movie>> SearchMovieByDirector(string Diretor)
         {
-            return await GetAll(movie => movie.Director.Contains(Diretor));
+            return _dbSet
+                .IgnoreAutoIncludes()
+                .Where(movie => movie.Director.Contains(Diretor))
+                .Include(x => x.Actors.Where(x => x.Active))
+                .Include(x => x.Genre.Where(x => x.Active));
         }
 
         public async Task<IQueryable<Movie>> SearchMovieByTitle(string Title)
         {
-            return await base.GetAll(movie => movie.Title.Contains(Title));
+            return _dbSet
+                .IgnoreAutoIncludes()
+                .Where(movie => movie.Title.Contains(Title))
+                .Include(x => x.Genre.Where(x => x.Active))
+                .Include(x => x.Actors.Where(x => x.Active));
         }
 
         
         public async Task<IQueryable<Movie>> SearchMovieByGenre(string GenreName)
         {
             return _dbSet
-                .Include(movie => movie.Genre).Where(movie => movie.Genre.Any(genre => genre.Name == GenreName));
+                .IgnoreAutoIncludes()
+                .Include(movie => movie.Genre).Where(movie => movie.Genre.Any(genre => genre.Name.Contains(GenreName)))
+                .Include(x => x.Actors.Where(x => x.Active))
+                .Include(x => x.Genre.Where(x => x.Active));
         }
 
 
         public async Task<IQueryable<Movie>> SearchMovieByActor(string ActorName)
         {
             return _dbSet
-                .Include(movie => movie.Actors).Where(movie => movie.Actors.Any(actor => actor.Name == ActorName)); 
+                .IgnoreAutoIncludes()
+                .Include(movie => movie.Actors).Where(movie => movie.Actors.Any(actor => actor.Name.Contains(ActorName)))
+                .Include(x => x.Actors.Where(x => x.Active))
+                .Include(x => x.Genre.Where(x => x.Active));
         }
 
-
-
-
-        /*
-        public static float GetAverageRating(Movie movie)
+        public override Task<IQueryable<Movie>> GetAll()
         {
-            if (movie.VoteCounter == 0)
-                return 0;
+            return Task.FromResult(
+                _dbSet.Where(x => x.Active)
+                .IgnoreAutoIncludes()
+                .Include(x => x.Actors.Where(x => x.Active))
+                .Include(x => x.Genre.Where(x => x.Active))
 
-            var qtdadeVotos = movie.VoteCounter;
-            return;
+                .AsQueryable());
         }
-        */
-
-        
-        
     }
 }

@@ -1,4 +1,6 @@
 ﻿using Domain.Entities;
+using Service.Dtos.ActorDTO;
+using Service.Dtos.GenreDTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +19,7 @@ namespace Service.Dtos.MovieDTO
         public decimal AverageVote { get; set; }
         public int VoteCounter { get; set; }
         public DateTime ReleaseDate { get; set; }
-        public List<Actor> Actors { get; set; } 
-        public List<Genre> Genre{ get; set; }
+        public List<ReadActorDTO> Actors { get; set; } 
+        public List<ReadGenreDTO> Genre{ get; set; }
     }
 }

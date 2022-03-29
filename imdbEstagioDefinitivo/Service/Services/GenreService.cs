@@ -71,7 +71,7 @@ namespace Service.Services
             var mappedGenre = _mapper.Map<ReadGenreDTO>(genre);
             return Result.Ok(mappedGenre);
         }
-        public async Task<Result<IEnumerable<ReadGenreDTO>>> GetAll()
+        public async Task<Result<IEnumerable<ReadGenreDTO>>> GetAll(int offset = 0, int limit = 0)
         {
             var genreList = await _genreRepository.GetAll();
             if (!genreList.Any())
@@ -79,6 +79,11 @@ namespace Service.Services
                 return Result.Fail("Não há gêneros cadastrados!");
             }
             var mappedList = _mapper.Map<IEnumerable<ReadGenreDTO>>(genreList);
+
+            if (offset != 0 || limit != 0)
+            {
+                mappedList = _mapper.Map<IEnumerable<ReadGenreDTO>>(genreList.Skip(offset).Take(limit));
+            }
             return Result.Ok(mappedList);
         }
     }

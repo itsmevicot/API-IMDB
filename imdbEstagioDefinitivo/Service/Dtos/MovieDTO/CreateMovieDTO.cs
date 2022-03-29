@@ -14,5 +14,7 @@ namespace Service.Dtos.MovieDTO
         public int Duration { get; set; }
         public DateTime ReleaseDate { get; set; }
         public string Director { get; set; }
+        public List<int> Actors { get; set; }
+        public List<int> Genre { get; set; }
     }
 }

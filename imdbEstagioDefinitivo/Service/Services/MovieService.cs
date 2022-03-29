@@ -16,11 +16,15 @@ namespace Service.Services
     {
         private readonly IMapper _mapper;
         private readonly IMovieRepository _movieRepository;
+        private readonly IGenreRepository _genreRepository;
+        private readonly IActorRepository _actorRepository;
 
-        public MovieService(IMapper mapper, IMovieRepository movieRepository)
+        public MovieService(IMapper mapper, IMovieRepository movieRepository, IGenreRepository genreRepository, IActorRepository actorRepository)
         {
             _mapper = mapper;
             _movieRepository = movieRepository;
+            _genreRepository = genreRepository;
+            _actorRepository = actorRepository; 
         }
 
         public async Task<Result<ReadMovieDto>> GetById(int id)
@@ -32,12 +36,10 @@ namespace Service.Services
             }
 
             var mappedMovie = _mapper.Map<Result<ReadMovieDto>>(movie);
-            
-
             return mappedMovie;
         }
 
-        public async Task<Result<IEnumerable<ReadMovieDto>>> SearchMovieByDirector(string director)
+        public async Task<Result<IEnumerable<ReadMovieDto>>> SearchMovieByDirector(string director, int offset = 0, int limit = 0)
         {
             var movie = await _movieRepository.SearchMovieByDirector(director);
             if (movie == null)
@@ -45,10 +47,21 @@ namespace Service.Services
                 return Result.Fail("O diretor buscado não existe ou não dirigiu nenhum filme cadastrado.");
             }
             var mappedMovie = _mapper.Map<IEnumerable<ReadMovieDto>>(movie);
+
+
+            if (offset != 0 || limit != 0)
+            {
+                mappedMovie = _mapper.Map<IEnumerable<ReadMovieDto>>(movie.Skip(offset).Take(limit));
+            }
+
+            mappedMovie = mappedMovie
+               .OrderByDescending(x => x.VoteCounter)
+               .ThenBy(y => y.Title);
+
             return Result.Ok(mappedMovie);
         }
 
-        public async Task<Result<IEnumerable<ReadMovieDto>>> SearchMovieByTitle(string title)
+        public async Task<Result<IEnumerable<ReadMovieDto>>> SearchMovieByTitle(string title, int offset = 0, int limit = 0)
         {
             var movie = await _movieRepository.SearchMovieByTitle(title);
             if (movie == null)
@@ -56,10 +69,20 @@ namespace Service.Services
                 return Result.Fail("O título buscado não existe.");
             }
             var mappedMovie = _mapper.Map<IEnumerable<ReadMovieDto>>(movie);
+
+            if (offset != 0 || limit != 0)
+            {
+                mappedMovie = _mapper.Map<IEnumerable<ReadMovieDto>>(movie.Skip(offset).Take(limit));
+            }
+
+            mappedMovie = mappedMovie
+               .OrderByDescending(x => x.VoteCounter)
+               .ThenBy(y => y.Title);
+
             return Result.Ok(mappedMovie);
         }
 
-        public async Task<Result<IEnumerable<ReadMovieDto>>> SearchMovieByGenre(string genre)
+        public async Task<Result<IEnumerable<ReadMovieDto>>> SearchMovieByGenre(string genre, int offset = 0, int limit = 0)
         {
             var movie = await _movieRepository.SearchMovieByGenre(genre);
             if (movie == null)
@@ -67,11 +90,20 @@ namespace Service.Services
                 return Result.Fail("O gênero buscado não existe.");
             }
             var mappedMovie = _mapper.Map<IEnumerable<ReadMovieDto>>(movie);
+
+            if (offset != 0 || limit != 0)
+            {
+                mappedMovie = _mapper.Map<IEnumerable<ReadMovieDto>>(movie.Skip(offset).Take(limit));
+            }
+            mappedMovie = mappedMovie
+               .OrderByDescending(x => x.VoteCounter)
+               .ThenBy(y => y.Title);
+
             return Result.Ok(mappedMovie);
 
         }
 
-        public async Task<Result<IEnumerable<ReadMovieDto>>> SearchMovieByActor(string actor)
+        public async Task<Result<IEnumerable<ReadMovieDto>>> SearchMovieByActor(string actor, int offset = 0, int limit = 0)
         {
             var movie = await _movieRepository.SearchMovieByActor(actor);
             if (movie == null)
@@ -79,6 +111,16 @@ namespace Service.Services
                 return Result.Fail("O ator pesquisado não existe.");
             }
             var mappedMovie = _mapper.Map<IEnumerable<ReadMovieDto>>(movie);
+
+            if (offset != 0 || limit != 0)
+            {
+                mappedMovie = _mapper.Map<IEnumerable<ReadMovieDto>>(movie.Skip(offset).Take(limit));
+            }
+
+            mappedMovie = mappedMovie
+               .OrderByDescending(x => x.VoteCounter)
+               .ThenBy(y => y.Title);
+
             return Result.Ok(mappedMovie);
         }
 
@@ -86,19 +128,34 @@ namespace Service.Services
         {
             if((await _movieRepository.GetAll()).Any(m=>m.Title == registerMovie.Title))
                    return Result.Fail("Já existe um filme com esse título cadastrado.");
+  
+            var mappedMovie = _mapper.Map<Movie>(registerMovie);
 
-            try
+            foreach (var id in registerMovie.Genre)
             {
-                var mappedMovie = _mapper.Map<Movie>(registerMovie);
-                await _movieRepository.Add(mappedMovie);
-                await _movieRepository.SaveChanges();
+                var genre = await _genreRepository.GetById(id);
+                if (genre == null)
+                {
+                    return Result.Fail($"O ID {id} de gênero não existe.");
+                }
+                mappedMovie.Genre.Add(genre);
+            }
 
-                return Result.Ok();
-            }
-            catch
+            foreach(var id in registerMovie.Actors)
             {
-                return Result.Fail("Erro ao cadastrar o filme.");
+                var actor = await _actorRepository.GetById(id);
+                if (actor == null)
+                {
+                    return Result.Fail($"O ID {id} de ator não existe.");
+                }
+                mappedMovie.Actors.Add(actor);
             }
+
+
+            await _movieRepository.Add(mappedMovie);
+            await _movieRepository.SaveChanges();
+
+            return Result.Ok();            
         }
 
         public async Task<Result> DeleteMovie(int id)
@@ -114,7 +171,7 @@ namespace Service.Services
             return Result.Ok();
         }
 
-        public async Task<Result<IEnumerable<ReadMovieDto>>> GetAllMovies()
+        public async Task<Result<IEnumerable<ReadMovieDto>>> GetAllMovies(int offset = 0, int limit = 0)
         {
             var movies = await _movieRepository.GetAll();
             if (movies == null)
@@ -123,6 +180,15 @@ namespace Service.Services
             }
 
             var mappedMovies = _mapper.Map<IEnumerable<ReadMovieDto>>(movies);
+
+            if (offset != 0 || limit != 0)
+            {
+                mappedMovies = _mapper.Map<IEnumerable<ReadMovieDto>>(movies.Skip(offset).Take(limit));
+            }
+
+            mappedMovies = mappedMovies
+                .OrderByDescending(x => x.VoteCounter)
+                .ThenBy(y => y.Title);
             return Result.Ok(mappedMovies);
         }
     }

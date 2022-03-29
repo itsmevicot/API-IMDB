@@ -70,7 +70,7 @@ namespace Service.Services
             var mappedActor = _mapper.Map<ReadActorDTO>(actor);
             return Result.Ok(mappedActor);
         }
-        public async Task<Result<IEnumerable<ReadActorDTO>>> GetAll()
+        public async Task<Result<IEnumerable<ReadActorDTO>>> GetAll(int offset = 0, int limit = 0)
         {
             var actorsList = await _actorRepository.GetAll();
             if (!actorsList.Any())
@@ -78,6 +78,11 @@ namespace Service.Services
                 return Result.Fail("Não há atores cadastrados!");
             }
             var mappedList = _mapper.Map<IEnumerable<ReadActorDTO>>(actorsList);
+
+            if (offset != 0 || limit != 0)
+            {
+                mappedList = _mapper.Map<IEnumerable<ReadActorDTO>>(actorsList.Skip(offset).Take(limit));
+            }
             return Result.Ok(mappedList);
         }
     }

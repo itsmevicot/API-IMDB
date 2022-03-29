@@ -11,8 +11,8 @@ namespace Service.Interfaces
     public interface IUserService
     {
         Task<Result> DeleteUser(int id);
-        Task<Result<IEnumerable<ReadUserDTO>>> GetActiveUsers();
-        Task<Result<IEnumerable<ReadUserDTO>>> GetAllUsersByNickname();
+        Task<Result<IEnumerable<ReadUserDTO>>> GetActiveUsers(int offset = 0, int limit = 0);
+        Task<Result<IEnumerable<ReadUserDTO>>> GetAllUsersByNickname(int offset = 0, int limit = 0);
         Task<Result> InactivateUser(int id);
         Task<Result<LoginTokenDTO>> Login(LoginDTO login);
         Task<Result> RegisterUser(CreateUserDTO registerUser);

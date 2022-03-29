@@ -29,11 +29,18 @@ namespace Service.Services
         }
 
 
-        public async Task<Result<IEnumerable<ReadUserDTO>>> GetAllUsersByNickname()
+        public async Task<Result<IEnumerable<ReadUserDTO>>> GetAllUsersByNickname(int offset = 0, int limit = 0)
         {
             var users = await _userRepository.GetAll();
-            users = users.OrderBy(x => x.Nickname);
-            return Result.Ok(_mapper.Map<IEnumerable<ReadUserDTO>>(users));
+            users = users.
+                OrderBy(x => x.Nickname);
+            var mappedUsers = _mapper.Map<IEnumerable<ReadUserDTO>>(users);
+
+            if (offset != 0 || limit != 0)
+            {
+                mappedUsers = _mapper.Map<IEnumerable<ReadUserDTO>>(users.Skip(offset).Take(limit));
+            }
+            return Result.Ok(mappedUsers);
         }
 
         public async Task<Result<ReadUserDTO>> SearchUserByEmail(string email)
@@ -135,7 +142,7 @@ namespace Service.Services
             }
         }
 
-        public async Task<Result<IEnumerable<ReadUserDTO>>> GetActiveUsers()
+        public async Task<Result<IEnumerable<ReadUserDTO>>> GetActiveUsers(int offset = 0, int limit = 0)
         {
             var result = await _userRepository.GetAll(x => x.Role == Role.Usuario);
             result = result.OrderBy(x => x.Nickname);
@@ -144,6 +151,11 @@ namespace Service.Services
                 return Result.Fail("Não há usuários cadastrados.");
             }
             var mappedResult = _mapper.Map<IEnumerable<ReadUserDTO>>(result);
+
+            if (offset != 0 || limit != 0)
+            {
+                mappedResult = _mapper.Map<IEnumerable<ReadUserDTO>>(result.Skip(offset).Take(limit));
+            }
             return Result.Ok(mappedResult);
         }
 

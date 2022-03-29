@@ -18,15 +18,18 @@ namespace Service.Profiles
             CreateMap<ReadMovieDto, Movie>()
                 .ReverseMap()
                 .ForMember(dto => dto.AverageVote, opt => opt.MapFrom(x => x.GetAverageVote()));
-      
+
             CreateMap<Movie, CreateMovieDTO>()
                 .ForMember(dto => dto.Director, opt => opt.MapFrom(x => x.Director))
-                .ForMember(dto => dto.Duration, opt => opt.MapFrom(x=> x.Duration))
+                .ForMember(dto => dto.Duration, opt => opt.MapFrom(x => x.Duration))
                 .ForMember(dto => dto.Title, opt => opt.MapFrom(x => x.Title))
                 .ForMember(dto => dto.ReleaseDate, opt => opt.MapFrom(x => x.ReleaseDate))
                 .ForMember(dto => dto.Description, opt => opt.MapFrom(x => x.Description))
-                
-                .ReverseMap();
+
+                .ReverseMap()
+                .ForMember(dto => dto.Actors, opt => opt.MapFrom(x => new List<Actor> { }))
+                .ForMember(dto => dto.Genre, opt => opt.MapFrom(x => new List<Genre> { }));
+
         }
     }
 }

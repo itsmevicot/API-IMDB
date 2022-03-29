@@ -20,6 +20,7 @@ namespace imdbAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Administrador")]
         [Route("Register")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> CadastrarFilme(CreateMovieDTO registerMovie)
@@ -33,9 +34,9 @@ namespace imdbAPI.Controllers
         [Authorize]
         [Route("GetAllMovies")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IActionResult> RetornarTodosFilmes()
+        public async Task<IActionResult> RetornarTodosFilmes(int offset, int limit)
         {
-            var result = await _movieService.GetAllMovies();
+            var result = await _movieService.GetAllMovies(offset, limit);
             if (result == null)
             {
                 return NotFound();
@@ -47,24 +48,23 @@ namespace imdbAPI.Controllers
         [HttpGet]
         [Route("SearchByActor/{name}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IActionResult> BuscarFilmePorAtorAsync(string name) 
+        public async Task<IActionResult> BuscarFilmePorAtorAsync(string name, int offset, int limit) 
         {
-            var filmes = await _movieService.SearchMovieByActor(name);
+            var filmes = await _movieService.SearchMovieByActor(name, offset, limit);
             if (filmes.IsFailed)
             {
                 return NotFound(filmes.Reasons);
             }
 
-            return Ok(filmes);
+            return Ok(filmes.Value);
         }
 
         [HttpGet]
         [Route("SearchByGenre/{genre}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-
-        public async Task<IActionResult> BuscarFilmePorGenero(string genre)
+        public async Task<IActionResult> BuscarFilmePorGenero(string genre, int offset, int limit)
         {
-            var filmes = await _movieService.SearchMovieByGenre(genre);
+            var filmes = await _movieService.SearchMovieByGenre(genre, offset, limit);
             if (filmes.IsFailed)
             {
                 return NotFound(filmes.ToString());
@@ -75,10 +75,9 @@ namespace imdbAPI.Controllers
         [HttpGet]
         [Route("SearchByTitle/{title}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-
-        public async Task<IActionResult> BuscarFilmePorTitulo(string title)
+        public async Task<IActionResult> BuscarFilmePorTitulo(string title, int offset, int limit)
         {
-            var filmes = await _movieService.SearchMovieByTitle(title);
+            var filmes = await _movieService.SearchMovieByTitle(title, offset, limit);
             if (filmes.IsFailed)
             {
                 return NotFound(filmes.ToString());
@@ -90,10 +89,9 @@ namespace imdbAPI.Controllers
         [HttpGet]
         [Route("SearchByDirector/{director}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-
-        public async Task<IActionResult> BuscarFilmePorDiretorAsync(string director)
+        public async Task<IActionResult> BuscarFilmePorDiretorAsync(string director, int offset, int limit)
         {
-            var filmes = await _movieService.SearchMovieByDirector(director);
+            var filmes = await _movieService.SearchMovieByDirector(director, offset, limit);
             if (filmes.IsFailed)
             {
                 return NotFound(filmes.ToString());
@@ -104,7 +102,6 @@ namespace imdbAPI.Controllers
         [HttpGet]
         [Route("GetById/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-
         public async Task<IActionResult> BuscarFilmePorIdAsync(int id)
         {
             var filme = await _movieService.GetById(id);
@@ -112,7 +109,7 @@ namespace imdbAPI.Controllers
             {
                 return NotFound();
             }
-            return Ok(filme);
+            return Ok(filme.Value);
         }
 
         [HttpDelete]

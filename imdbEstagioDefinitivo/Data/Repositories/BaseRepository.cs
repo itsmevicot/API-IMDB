@@ -15,7 +15,7 @@ namespace Data.Repositories
     public class BaseRepository<T> : IBaseRepository<T> where T : Entity<int>, new() 
     {
         protected readonly imdbContext _context;
-        private readonly DbSet<T> _dbSet;
+        protected readonly DbSet<T> _dbSet;
 
         public BaseRepository(imdbContext context)
         {
