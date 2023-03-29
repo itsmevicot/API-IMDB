@@ -1,4 +1,6 @@
-﻿using FluentResults;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using FluentResults;
 using Service.Dtos.GenreDTO;
 
 namespace Service.Services

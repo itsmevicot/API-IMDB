@@ -1,6 +1,9 @@
 using Data.Context;
 using imdbAPI.Extensions;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Service.Profiles;
 
 var builder = WebApplication.CreateBuilder(args);

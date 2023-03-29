@@ -1,5 +1,6 @@
 ﻿using Data.Repositories;
 using Domain.Interfaces.Repositories;
+using Microsoft.Extensions.DependencyInjection;
 using Service.Interfaces;
 using Service.Services;
 using Service.Services.Authentication;

@@ -1,4 +1,5 @@
 ﻿using IMDB.src.Api.Config;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 
 namespace imdbAPI.Extensions
